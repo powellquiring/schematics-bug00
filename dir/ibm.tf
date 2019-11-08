@@ -6,9 +6,15 @@ provider ibm {
   region           = "${var.ibm_region}"
   generation       = 1                         # vpc on classic
 }
-output local {
-  value = "${file("localfile")}"
+resource "null_resource" "ls" {
+  provisioner "local-exec" {
+    command = "ls -lR"
+  }
 }
-output child {
-  value = "${file("app/app.js")}"
-}
+
+#output local {
+#  value = "${file("localfile")}"
+#}
+#output child {
+#  value = "${file("app/app.js")}"
+#}
