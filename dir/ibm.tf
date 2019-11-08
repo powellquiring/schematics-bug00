@@ -12,9 +12,15 @@ resource "null_resource" "ls" {
   }
 }
 
-#output local {
-#  value = "${file("localfile")}"
-#}
-#output child {
-#  value = "${file("app/app.js")}"
-#}
+resource "null_resource" "pwd" {
+  provisioner "local-exec" {
+    command = "pwd"
+  }
+}
+
+output local {
+  value = "${file("./localfile")}"
+}
+output child {
+  value = "${file("./app/app.js")}"
+}
